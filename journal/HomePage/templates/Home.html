@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <style>
+      body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.login-container {
+  float: right;
+}
+
+.login-container a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.login-container a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+
+
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #100721;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  gap: 10px;
+
+  > div {
+    flex: 0 0 120px;
+    border-radius: 0.5rem;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    box-shadow: 1px 5px 15px #1e0e3e;
+    position: relative;
+    overflow: hidden;
+
+    &:nth-of-type(1) {
+      background: url("https://source.unsplash.com/random/1260x750?supercar")
+        no-repeat 50% / cover;
+    }
+    &:nth-of-type(2) {
+      background: url("https://source.unsplash.com/random/1260x750?sportsbike")
+        no-repeat 50% / cover;
+    }
+    &:nth-of-type(3) {
+      background: url("https://source.unsplash.com/random/1260x750?racingcar")
+        no-repeat 50% / cover;
+    }
+    &:nth-of-type(4) {
+      background: url("https://source.unsplash.com/random/1260x750?motogp")
+        no-repeat 50% / cover;
+    }
+
+    .content {
+      font-size: 1.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      opacity: 0;
+      flex-direction: column;
+      height: 100%;
+      justify-content: flex-end;
+      background: rgb(2, 2, 46);
+      background: linear-gradient(
+        0deg,
+        rgba(2, 2, 46, 0.6755077030812324) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: translatey(100%);
+      transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
+      visibility: hidden;
+
+      span {
+        display: block;
+        margin-top: 5px;
+        font-size: 1.2rem;
+      }
+    }
+
+    &:hover {
+      flex: 0 0 250px;
+      box-shadow: 1px 3px 15px #7645d8;
+      transform: translatey(-30px);
+    }
+
+    &:hover .content {
+      opacity: 1;
+      transform: translatey(0%);
+      visibility: visible;
+    }
+  }
+}
+
+    </style>
+
+</head>
+
+<body>
+  <nav style="width: 100vw;">
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <div class="login-container">
+      <a href="{% url 'signup' %}">Sign In</a>
+    </div>
+  </div>
+  
+</nav>
+
+<div class="container">
+  <div>
+    <div class="content">
+      <h2>Super Car</h2>
+      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, hic!</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>Sports Bike</h2>
+      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>Racing Car</h2>
+      <span>Lorem ipsum dolor sit amet consectetur adipisicing.</span>
+    </div>
+  </div>
+  <div>
+    <div class="content">
+      <h2>Moto GP</h2>
+      <span>Lorem ipsum dolor sit amet.</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

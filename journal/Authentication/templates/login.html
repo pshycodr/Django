@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #100721;
             margin: 0;
             padding: 0;
             display: flex;
@@ -69,8 +69,8 @@
     <form action="" method="post">
         {% csrf_token %}
         <h2>Login</h2>
-        <label for="loginUsername">Username:</label>
-        <input type="text" id="loginUsername" name="loginUsername" required>
+        <label for="loginUsername">Email:</label>
+        <input type="email" id="loginUsername" name="loginUsername" placeholder="example@mail.com" required>
 
         <label for="loginPassword">Password:</label>
         <input type="password" id="loginPassword" name="loginPassword" required>

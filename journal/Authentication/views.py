@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-# from . import utils
+from HomePage.views import *
 import pyrebase
+# from requests.exceptions import HTTPError
 
 firebaseConfig = {
   "apiKey": "AIzaSyAFNwVq9PhFxystAc3vk-hqR5-rPoLQuew",
@@ -34,7 +35,7 @@ def signup(request):
 
         try:
             Auth.create_user_with_email_and_password(email, password)
-            messages.success(request, 'Signup successful. Please login.')
+            messages.success(request, 'Account Created Successfully. Please login.')
             return redirect('login')
         except Exception as e:
             error_message = str(e)
@@ -56,8 +57,8 @@ def login(request):
         try:
             user = Auth.sign_in_with_email_and_password(email, password)
             request.session['user_id'] = user['localId']
-            messages.success(request, 'Login successful.')
-            return redirect('dashboard')
+            messages.success(request, 'Successfully Logged In.')
+            return redirect('home')
         except Exception as e:
             messages.error(request, 'Invalid email or password. Please try again.')
 
