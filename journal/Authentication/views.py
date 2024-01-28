@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from HomePage.views import *
 import pyrebase
+from django.http import HttpResponseRedirect
 # from requests.exceptions import HTTPError
 
 firebaseConfig = {
@@ -30,13 +31,17 @@ Storage = firebase.storage()
 # SignUP
 def signup(request):
     if request.method == 'POST':
-        email = request.POST.get("signupUsername", '')
+        email = request.POST.get("signupUserEmail", '')
         password = request.POST.get("signupPassword", '')
+        userName = request.POST.get("signupUserName")
+        data = {"userName":userName, "userEmail":email, "userPassword":password}
 
         try:
-            Auth.create_user_with_email_and_password(email, password)
+            Auth.create_user_with_email_and_password(email, password) 
+            DataBase.child("users").push(data)
             messages.success(request, 'Account Created Successfully. Please login.')
             return redirect('login')
+        
         except Exception as e:
             error_message = str(e)
             if 'INVALID_EMAIL' in error_message:
@@ -45,20 +50,22 @@ def signup(request):
                 error_message = 'Email address already exists.'
             messages.error(request, error_message)
 
+
+
+
     return render(request, 'signup.html')
 
 
 # Login
 def login(request):
     if request.method == 'POST':
-        email = request.POST.get("loginUsername", '')
+        email = request.POST.get("loginUserEmail", '')
         password = request.POST.get("loginPassword", '')
-
         try:
             user = Auth.sign_in_with_email_and_password(email, password)
             request.session['user_id'] = user['localId']
             messages.success(request, 'Successfully Logged In.')
-            return redirect('home')
+            return HttpResponseRedirect ('/auth/home/')
         except Exception as e:
             messages.error(request, 'Invalid email or password. Please try again.')
 
